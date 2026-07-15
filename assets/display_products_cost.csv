@@ -1,0 +1,8 @@
+﻿Product,Cost,Status
+sipping_cup,15,Active
+plate,15,Active
+bowl,15,Active
+spoon_set,20,Active
+Combo+All,45,Active
+Plate-Bowl-combo,28,Inactive
+Plate-spoon-combo,28,Inactive

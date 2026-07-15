@@ -1,0 +1,18 @@
+{
+  "bowl": [
+    "assets/bowl/bowl_1.jpeg",
+    "assets/bowl/bowl_2.jpeg"
+  ],
+  "plate": [
+    "assets/plate/plate_1.jpeg",
+    "assets/plate/plate_2.jpeg"
+  ],
+  "sipping_cup": [
+    "assets/sipping_cup/cup_1.jpeg",
+    "assets/sipping_cup/cup_2.jpeg"
+  ],
+  "spoon_set": [
+    "assets/spoon_set/set_1.png",
+    "assets/spoon_set/set_2.jpeg"
+  ]
+}
