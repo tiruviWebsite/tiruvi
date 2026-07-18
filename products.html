@@ -5,49 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Shop Tiruvi baby weaning products including a sipping cup, divided plate, baby bowl, spoon set, and complete set."
+      content="Shop Tiruvi baby weaning products including a divided plate, suction bowl, training cup, baby spoon, and complete weaning set."
     />
-    <title>Products | Tiruvi</title>
+    <title>Shop | Tiruvi</title>
     <link rel="icon" type="image/png" href="assets/tiruvi-logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=products-folder-1" />
+    <link rel="stylesheet" href="styles.css?v=reference-14" />
   </head>
   <body>
-    <header class="site-header" aria-label="Main navigation">
-      <a class="brand" href="index.html#top" aria-label="Tiruvi home">
+    <header class="site-header shop-header" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="Tiruvi home">
         <img src="assets/tiruvi-logo.png" alt="Tiruvi" />
       </a>
       <nav class="nav-links" aria-label="Primary">
-        <a href="products.html" aria-current="page">Products</a>
-        <a href="index.html#set">The Set</a>
-        <a href="index.html#features">Features</a>
-        <a href="index.html#order">Order</a>
+        <a href="products.html" aria-current="page">Shop</a>
+        <a href="coming-soon.html">Our Story <span>Coming Soon</span></a>
+        <a href="coming-soon.html">Safety &amp; Materials <span>Coming Soon</span></a>
+        <a href="coming-soon.html">Contact <span>Coming Soon</span></a>
       </nav>
-      <a class="header-cta" href="index.html#order">Order</a>
+      <div class="header-tools" aria-label="Shop tools">
+        <a href="#products" aria-label="Search">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+        </a>
+        <a href="#account" aria-label="Account">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 21a7.5 7.5 0 0 1 15 0"></path></svg>
+        </a>
+        <a class="cart-link" href="#basket-modal" aria-label="Basket" data-basket-toggle>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 8h12l-1 13H7L6 8Z"></path><path d="M9 8a3 3 0 0 1 6 0"></path></svg>
+          <span id="cart-count">0</span>
+        </a>
+      </div>
     </header>
 
     <main>
-      <section class="catalog-section standalone-catalog" id="products" aria-label="Tiruvi products">
-        <div class="catalog-toolbar">
-          <span id="product-count">Products:</span>
-          <a href="products.html">Show All</a>
+      <section class="shop-layout" id="products" aria-label="Shop products">
+        <div class="shop-heading">
+          <h1>Shop</h1>
+          <p>Beautifully designed essentials for every stage of weaning.</p>
         </div>
+
+        <div class="shop-controls shop-meta">
+          <span>Sort by: Best selling ˅</span>
+          <span id="product-count">0 products</span>
+        </div>
+
         <div class="product-grid" id="product-grid" aria-live="polite">
           <p class="product-loading">Loading products...</p>
         </div>
       </section>
+
+      <section class="product-detail" id="product-detail" aria-label="Product detail">
+        <div class="thumbnail-rail" id="detail-thumbnails"></div>
+        <div class="detail-image">
+          <img id="detail-image" src="assets/plate/plate_1.jpeg" alt="Divided Plate" />
+        </div>
+        <div class="detail-copy">
+          <h2 id="detail-title">Divided Plate</h2>
+          <strong class="detail-price" id="detail-price">GBP 15</strong>
+          <div class="stars" aria-label="Rated five stars">★★★★★ <span id="detail-reviews">(82 reviews)</span></div>
+          <p id="detail-description">Our divided plate is perfect for little portions and messy eats.</p>
+          <div class="colour-picker">
+            <span>Colour: Sage</span>
+            <div class="swatches">
+              <button class="swatch sage selected" type="button" aria-label="Sage"></button>
+              <button class="swatch cream" type="button" aria-label="Cream"></button>
+              <button class="swatch clay" type="button" aria-label="Clay"></button>
+              <button class="swatch mist" type="button" aria-label="Mist"></button>
+            </div>
+          </div>
+          <label class="quantity-control">
+            <span>Quantity</span>
+            <span class="stepper"><button type="button" id="qty-minus">−</button><input id="quantity" value="1" inputmode="numeric" /><button type="button" id="qty-plus">+</button></span>
+          </label>
+          <button class="button primary full-width" id="add-to-basket" type="button">Add to Basket</button>
+          <p class="basket-confirmation" id="basket-confirmation" role="status" aria-live="polite"></p>
+          <div class="mini-benefits">
+            <span>✓ In stock</span>
+            <span>▤ Dishwasher safe</span>
+          </div>
+          <div class="accordion-list">
+            <details open>
+              <summary>Details</summary>
+              <p>Three divided sections help kids discover different foods separately. The strong suction base keeps your plate put on mess.</p>
+            </details>
+            <details>
+              <summary>Materials &amp; Safety</summary>
+              <p>Food-grade silicone and stainless steel. BPA free.</p>
+            </details>
+            <details>
+              <summary>Care Instructions</summary>
+              <p>Dishwasher safe. Wash before first use.</p>
+            </details>
+            <details>
+              <summary>Delivery &amp; Returns</summary>
+              <p>Free UK delivery on orders over GBP 60. 30-day returns.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="delivery-strip" aria-label="Delivery benefits">
+        <article><span>▱</span><strong>Free UK delivery</strong><small>On orders over GBP 60</small></article>
+        <article><span>↻</span><strong>30-day returns</strong><small>Easy and hassle-free</small></article>
+        <article><span>▣</span><strong>Secure checkout</strong><small>Safe and encrypted</small></article>
+      </section>
     </main>
+
+    <div class="basket-modal" id="basket-modal" role="dialog" aria-modal="true" aria-labelledby="basket-modal-title" hidden>
+      <div class="basket-backdrop" data-basket-close></div>
+      <div class="basket-dialog">
+        <button class="modal-close" type="button" aria-label="Close basket" data-basket-close>×</button>
+        <section class="basket-panel modal-screen is-active" id="basket-screen" aria-label="Basket">
+          <h2 id="basket-modal-title">Your Basket</h2>
+          <p class="basket-count" id="basket-item-count">0 items</p>
+          <div id="basket-items" class="basket-items"></div>
+          <fieldset class="shipping-options" id="shipping-options">
+            <legend>Delivery</legend>
+          </fieldset>
+          <dl class="totals">
+            <div><dt>Subtotal</dt><dd id="basket-subtotal">GBP 0</dd></div>
+            <div><dt>Delivery</dt><dd id="basket-shipping">Free</dd></div>
+            <div><dt>Total</dt><dd id="basket-total">GBP 0</dd></div>
+          </dl>
+          <a class="button primary full-width checkout-link" id="proceed-checkout" href="checkout.html?v=reference-14">
+            <span>Proceed to Checkout</span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <div class="secure-checkout">
+            <span>▣ Secure checkout powered by Square</span>
+            <div class="payment-logos" aria-label="Accepted payment methods">
+              <strong>VISA</strong>
+              <strong>●● Mastercard</strong>
+              <strong> Pay</strong>
+              <strong>G Pay</strong>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
 
     <footer class="site-footer">
       <img src="assets/tiruvi-logo.png" alt="Tiruvi" />
-      <p>Baby weaning tableware. Stainless steel and silicone. BPA-free. Dishwasher safe.</p>
+      <p>Stainless steel and silicone baby weaning tableware.</p>
       <a href="https://www.instagram.com/tiruvi_baby/" target="_blank" rel="noreferrer">@tiruvi_baby</a>
     </footer>
-    <script src="products.js?v=products-folder-1"></script>
+
+    <script src="products.js?v=reference-14"></script>
   </body>
 </html>

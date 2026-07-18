@@ -1,8 +1,12 @@
-﻿Product,Cost,Status
-sipping_cup,15,Active
-plate,15,Active
-bowl,15,Active
-spoon_set,20,Active
-Combo+All,45,Active
-Plate-Bowl-combo,28,Inactive
-Plate-spoon-combo,28,Inactive
+﻿Product,Cost,Status,type,display name
+sipping_cup,10.95,Active,Product,
+plate,15,Active,Product,
+bowl,15,Active,Product,
+spoon_set,20,Active,Product,
+Combo+All,45,Active,Product,
+Plate-Bowl-combo,28,Inactive,Product,
+Plate-spoon-combo,28,Inactive,Product,
+Free Delivery,> 45,Active,Shipping,
+shipping,4.99,Active,Shipping,
+Next-Day Delivery,10.95,Active,Shipping,
+2 Day Delivery,6.99,Inactive,Shipping,
