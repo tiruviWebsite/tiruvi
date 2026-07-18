@@ -114,6 +114,7 @@ function collectFormData(form) {
 
 async function submitCheckout(event) {
   event.preventDefault();
+  const form = event.currentTarget;
   const button = document.querySelector("#pay-button");
   if (!checkoutPayload) {
     setStatus("Your basket is empty. Please return to the shop.", true);
@@ -136,7 +137,7 @@ async function submitCheckout(event) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        ...collectFormData(event.currentTarget),
+        ...collectFormData(form),
         items: checkoutPayload.items.map((item) => ({ key: item.key, quantity: item.quantity })),
         shippingKey: checkoutPayload.shipping.key,
         sourceId: tokenResult.token,

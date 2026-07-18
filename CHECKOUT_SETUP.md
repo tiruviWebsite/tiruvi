@@ -4,6 +4,8 @@ The checkout flow uses Square for card payment and SMTP for order/shipping email
 
 The Pay button only works when the site is opened from `python3 main.py`, because the checkout page needs `/api/checkout-config` and `/api/create-order`. A static server such as `localhost:4173` can show the page, but it cannot process Square payments.
 
+For local Square testing, open `http://localhost:8000/checkout.html`. Do not use `http://127.0.0.1:8000/checkout.html`, because Square's Web Payments SDK expects HTTPS or a secure localhost context.
+
 ## Square
 
 Set these before starting `main.py`:

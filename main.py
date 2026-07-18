@@ -10,7 +10,7 @@ import ssl
 import uuid
 
 
-HOST = "127.0.0.1"
+HOST = "localhost"
 START_PORT = 8000
 ROOT = Path(__file__).resolve().parent
 PRODUCT_SOURCE = ROOT / "assets" / "display_products_cost.csv"
