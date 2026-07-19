@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=reference-12" />
+    <link rel="stylesheet" href="styles.css?v=reference-15" />
   </head>
   <body>
     <header class="site-header shop-header" aria-label="Main navigation">
@@ -73,14 +73,42 @@
 
     <div class="order-success-modal" id="order-success-modal" hidden>
       <div class="order-success-dialog" role="dialog" aria-modal="true" aria-labelledby="order-success-title">
-        <div class="order-success-icon" aria-hidden="true">✓</div>
-        <h2 id="order-success-title">Order Placed</h2>
-        <p>Hurray, your order has been placed. Please check your inbox for further updates.</p>
-        <div class="order-success-number">
-          <span>Order number</span>
-          <strong id="order-success-id">TIRUVI</strong>
+        <div class="order-success-confetti" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
         </div>
-        <a class="button primary full-width" href="products.html">Continue Shopping</a>
+        <div class="order-success-icon" aria-hidden="true">✓</div>
+        <h2 id="order-success-title">Hurray! Your order is placed</h2>
+        <p>We've received your order and are getting it ready with lots of care.</p>
+        <div class="order-success-details">
+          <div class="order-success-row">
+            <span class="order-success-row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M8 7V6a4 4 0 0 1 8 0v1"></path><path d="M6 7h12l-1 13H7L6 7Z"></path><path d="M9 11h6"></path></svg>
+            </span>
+            <div>
+              <span>Order Number</span>
+              <strong id="order-success-id">TIRUVI</strong>
+            </div>
+          </div>
+          <div class="order-success-row">
+            <span class="order-success-row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 7h11v10H3z"></path><path d="M14 10h4l3 3v4h-7z"></path><circle cx="7" cy="18" r="1.8"></circle><circle cx="18" cy="18" r="1.8"></circle></svg>
+            </span>
+            <div>
+              <span>Estimated Delivery</span>
+              <strong id="order-success-delivery">2-4 Business Days</strong>
+            </div>
+          </div>
+          <div class="order-success-row">
+            <span class="order-success-row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"></path><path d="m4 7 8 6 8-6"></path></svg>
+            </span>
+            <div>
+              <span>Confirmation Email</span>
+              <strong id="order-success-email">A confirmation has been sent to your email.</strong>
+            </div>
+          </div>
+        </div>
+        <a class="button primary full-width order-success-action" href="products.html">Continue Shopping <span aria-hidden="true">→</span></a>
       </div>
     </div>
 
@@ -90,6 +118,6 @@
       <a href="https://www.instagram.com/tiruvi_baby/" target="_blank" rel="noreferrer">@tiruvi_baby</a>
     </footer>
 
-    <script src="checkout.js?v=reference-17"></script>
+    <script src="checkout.js?v=reference-18"></script>
   </body>
 </html>

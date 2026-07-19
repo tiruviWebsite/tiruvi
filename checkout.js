@@ -26,15 +26,37 @@ function setStatus(message, isError = false) {
   status.classList.toggle("is-error", isError);
 }
 
-function showOrderSuccess(orderId) {
+function getDeliveryEstimate() {
+  const title = checkoutPayload?.shipping?.title?.toLowerCase() || "";
+  if (title.includes("next")) {
+    return "Next Business Day";
+  }
+  if (title.includes("standard") || title.includes("2 day")) {
+    return "2-3 Business Days";
+  }
+  if (title.includes("free")) {
+    return "3-5 Business Days";
+  }
+  return "2-4 Business Days";
+}
+
+function showOrderSuccess(orderId, email) {
   const modal = document.querySelector("#order-success-modal");
   const orderNumber = document.querySelector("#order-success-id");
+  const deliveryEstimate = document.querySelector("#order-success-delivery");
+  const confirmationEmail = document.querySelector("#order-success-email");
   if (!modal || !orderNumber) {
     setStatus(`Order received. Your order number is ${orderId}.`);
     return;
   }
 
   orderNumber.textContent = orderId;
+  if (deliveryEstimate) {
+    deliveryEstimate.textContent = getDeliveryEstimate();
+  }
+  if (confirmationEmail) {
+    confirmationEmail.textContent = email ? `Confirmation sent to ${email}.` : "A confirmation has been sent to your email.";
+  }
   modal.hidden = false;
   document.body.classList.add("modal-open");
   const continueButton = modal.querySelector("a");
@@ -147,6 +169,7 @@ async function submitCheckout(event) {
   button.disabled = true;
   setStatus("Processing payment...");
   try {
+    const customerDetails = collectFormData(form);
     const tokenResult = await squareCard.tokenize();
     if (tokenResult.status !== "OK") {
       throw new Error(tokenResult.errors?.[0]?.message || "Card payment could not be tokenized.");
@@ -156,7 +179,7 @@ async function submitCheckout(event) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        ...collectFormData(form),
+        ...customerDetails,
         items: checkoutPayload.items.map((item) => ({ key: item.key, quantity: item.quantity })),
         shippingKey: checkoutPayload.shipping.key,
         sourceId: tokenResult.token,
@@ -170,7 +193,7 @@ async function submitCheckout(event) {
     localStorage.removeItem(CHECKOUT_STORAGE_KEY);
     setStatus("");
     button.textContent = "Order Received";
-    showOrderSuccess(result.orderId);
+    showOrderSuccess(result.orderId, customerDetails.contact.email);
   } catch (error) {
     setStatus(error.message, true);
     button.disabled = false;

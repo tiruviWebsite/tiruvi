@@ -1278,8 +1278,8 @@ button.swatch {
   display: grid;
   place-items: center;
   padding: 24px;
-  background: rgba(24, 28, 22, 0.36);
-  backdrop-filter: blur(4px);
+  background: rgba(24, 28, 22, 0.46);
+  backdrop-filter: blur(5px);
 }
 
 .order-success-modal[hidden] {
@@ -1287,66 +1287,181 @@ button.swatch {
 }
 
 .order-success-dialog {
-  width: min(430px, 100%);
+  position: relative;
+  width: min(560px, 100%);
   display: grid;
   justify-items: center;
-  gap: 18px;
-  padding: clamp(28px, 5vw, 42px);
-  border: 1px solid rgba(62, 87, 58, 0.2);
-  border-radius: 8px;
+  gap: 16px;
+  padding: clamp(32px, 5vw, 48px);
+  border: 1px solid rgba(62, 87, 58, 0.16);
+  border-radius: 18px;
   background: #fffdf9;
-  box-shadow: 0 24px 80px rgba(24, 28, 22, 0.18);
+  box-shadow: 0 26px 90px rgba(24, 28, 22, 0.28);
+  overflow: hidden;
   text-align: center;
+}
+
+.order-success-confetti {
+  position: absolute;
+  inset: 24px 70px auto;
+  height: 74px;
+  pointer-events: none;
+}
+
+.order-success-confetti span {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--clay);
+  opacity: 0.85;
+}
+
+.order-success-confetti span:nth-child(1) {
+  left: 8%;
+  top: 20px;
+  background: #eeb476;
+}
+
+.order-success-confetti span:nth-child(2) {
+  left: 24%;
+  top: 4px;
+  width: 5px;
+  height: 16px;
+  border-radius: 2px;
+  background: #b9b38d;
+  transform: rotate(-38deg);
+}
+
+.order-success-confetti span:nth-child(3) {
+  left: 34%;
+  top: 34px;
+  background: #f2a9aa;
+}
+
+.order-success-confetti span:nth-child(4) {
+  right: 28%;
+  top: 7px;
+  width: 6px;
+  height: 17px;
+  border-radius: 2px;
+  background: #8fa17d;
+  transform: rotate(42deg);
+}
+
+.order-success-confetti span:nth-child(5) {
+  right: 16%;
+  top: 31px;
+  background: #efa99b;
+}
+
+.order-success-confetti span:nth-child(6) {
+  right: 5%;
+  top: 20px;
+  width: 4px;
+  height: 4px;
+  background: #eeb476;
 }
 
 .order-success-icon {
   display: grid;
   place-items: center;
-  width: 62px;
-  height: 62px;
+  width: 88px;
+  height: 88px;
   border-radius: 999px;
-  background: var(--sage-dark);
+  background: #8a9a7d;
   color: #fff;
-  font-size: 2rem;
+  font-size: 2.7rem;
   font-weight: 900;
+  box-shadow: 0 14px 34px rgba(64, 82, 61, 0.2);
 }
 
 .order-success-dialog h2 {
   margin: 0;
-  font-size: clamp(1.9rem, 5vw, 2.45rem);
-  line-height: 1.05;
+  color: var(--sage-dark);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.7rem, 5vw, 2.1rem);
+  line-height: 1.15;
 }
 
 .order-success-dialog p {
-  max-width: 320px;
+  max-width: 380px;
   margin: 0;
-  color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.55;
-}
-
-.order-success-number {
-  width: 100%;
-  display: grid;
-  gap: 6px;
-  padding: 16px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: #f8f5ef;
-}
-
-.order-success-number span {
-  color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.order-success-number strong {
   color: var(--ink);
   font-size: 1rem;
+  line-height: 1.45;
+}
+
+.order-success-details {
+  width: 100%;
+  display: grid;
+  margin-top: 4px;
+  padding: 4px 28px;
+  border-radius: 14px;
+  background: rgba(248, 245, 239, 0.9);
+}
+
+.order-success-row {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.order-success-row:last-child {
+  border-bottom: 0;
+}
+
+.order-success-row-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: #eceae2;
+  color: var(--muted);
+}
+
+.order-success-row-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.order-success-row span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.order-success-row strong {
+  display: block;
+  margin-top: 2px;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 900;
   overflow-wrap: anywhere;
+}
+
+.order-success-action {
+  min-height: 52px;
+  margin-top: 2px;
+  border-radius: 9px;
+  box-shadow: 0 12px 30px rgba(64, 82, 61, 0.18);
+}
+
+.order-success-action span {
+  margin-left: 14px;
+  font-size: 1.35rem;
+  line-height: 1;
 }
 
 .product-loading,
