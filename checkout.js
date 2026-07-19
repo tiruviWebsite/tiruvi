@@ -178,6 +178,8 @@ function buildVerificationDetails(customerDetails) {
     amount: checkoutPayload.total.toFixed(2),
     currencyCode: "GBP",
     intent: "CHARGE",
+    customerInitiated: true,
+    sellerKeyedIn: false,
     billingContact: {
       givenName,
       familyName,
