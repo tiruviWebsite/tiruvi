@@ -26,12 +26,31 @@ function setStatus(message, isError = false) {
   status.classList.toggle("is-error", isError);
 }
 
+function showOrderSuccess(orderId) {
+  const modal = document.querySelector("#order-success-modal");
+  const orderNumber = document.querySelector("#order-success-id");
+  if (!modal || !orderNumber) {
+    setStatus(`Order received. Your order number is ${orderId}.`);
+    return;
+  }
+
+  orderNumber.textContent = orderId;
+  modal.hidden = false;
+  document.body.classList.add("modal-open");
+  const continueButton = modal.querySelector("a");
+  continueButton?.focus();
+}
+
 async function readJsonResponse(response, fallbackMessage) {
   const contentType = response.headers.get("content-type") || "";
-  if (!response.ok || !contentType.includes("application/json")) {
+  if (!contentType.includes("application/json")) {
     throw new Error(fallbackMessage);
   }
-  return response.json();
+  const payload = await response.json();
+  if (!response.ok || payload.error) {
+    throw new Error(payload.error || fallbackMessage);
+  }
+  return payload;
 }
 
 function renderSummary() {
@@ -149,8 +168,9 @@ async function submitCheckout(event) {
     }
 
     localStorage.removeItem(CHECKOUT_STORAGE_KEY);
-    setStatus(`Order received. Your order number is ${result.orderId}.`);
+    setStatus("");
     button.textContent = "Order Received";
+    showOrderSuccess(result.orderId);
   } catch (error) {
     setStatus(error.message, true);
     button.disabled = false;

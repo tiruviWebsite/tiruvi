@@ -9,6 +9,11 @@ import smtplib
 import ssl
 import uuid
 
+try:
+    import certifi
+except ImportError:
+    certifi = None
+
 
 HOST = "localhost"
 START_PORT = 8000
@@ -157,12 +162,13 @@ def create_square_payment(source_id, order):
             "Authorization": f"Bearer {os.getenv('SQUARE_ACCESS_TOKEN')}",
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "Square-Version": os.getenv("SQUARE_VERSION", "2026-06-18"),
+            "Square-Version": os.getenv("SQUARE_VERSION", "2026-07-15"),
         },
         method="POST",
     )
     try:
-        with request.urlopen(req, timeout=20) as response:
+        context = ssl.create_default_context(cafile=certifi.where()) if certifi else ssl.create_default_context()
+        with request.urlopen(req, timeout=20, context=context) as response:
             return json.loads(response.read().decode("utf-8"))
     except error.HTTPError as exc:
         detail = exc.read().decode("utf-8")

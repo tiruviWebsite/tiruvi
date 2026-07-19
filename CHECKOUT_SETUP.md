@@ -15,11 +15,13 @@ export SQUARE_ENVIRONMENT=sandbox
 export SQUARE_APPLICATION_ID="sandbox-sq0idb-..."
 export SQUARE_LOCATION_ID="L..."
 export SQUARE_ACCESS_TOKEN="EAAA..."
-export SQUARE_VERSION="2026-06-18"
+export SQUARE_VERSION="2026-07-15"
 python3 main.py
 ```
 
 Use `SQUARE_ENVIRONMENT=production` with production credentials when going live. The Application ID and Location ID are used by the browser payment form. The Access Token is used only by `main.py` to create the payment with Square.
+
+If local Python cannot verify Square's HTTPS certificate, install/update the CA bundle with `python3 -m pip install --upgrade certifi`. The server uses `certifi` automatically when it is available.
 
 ## SMTP
 
