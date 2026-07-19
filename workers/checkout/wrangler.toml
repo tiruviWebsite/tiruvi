@@ -1,0 +1,8 @@
+name = "tiruvi-checkout"
+main = "worker.js"
+compatibility_date = "2026-07-15"
+
+[vars]
+SQUARE_ENVIRONMENT = "sandbox"
+SQUARE_VERSION = "2026-07-15"
+ALLOWED_ORIGINS = "https://www.tiruvi.co.uk,https://tiruvi.co.uk,http://localhost:8000"

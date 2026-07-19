@@ -23,6 +23,54 @@ Use `SQUARE_ENVIRONMENT=production` with production credentials when going live.
 
 If local Python cannot verify Square's HTTPS certificate, install/update the CA bundle with `python3 -m pip install --upgrade certifi`. The server uses `certifi` automatically when it is available.
 
+## Cloudflare Worker Deployment
+
+The deployed GitHub Pages site calls:
+
+```txt
+https://tiruvi-checkout.satwikgattu.workers.dev
+```
+
+The Worker source is in `workers/checkout`.
+
+Deploy with Wrangler:
+
+```sh
+cd workers/checkout
+npx wrangler deploy
+```
+
+Or deploy from the Cloudflare dashboard:
+
+1. Open `tiruvi-checkout` in Workers & Pages.
+2. Open the Worker editor.
+3. Replace the default Hello World code with `workers/checkout/worker.js`.
+4. Save and deploy.
+5. Go to Settings, then Variables and Secrets.
+
+Set secrets in Cloudflare before live checkout:
+
+```sh
+npx wrangler secret put SQUARE_APPLICATION_ID
+npx wrangler secret put SQUARE_LOCATION_ID
+npx wrangler secret put SQUARE_ACCESS_TOKEN
+```
+
+For sandbox testing, keep `SQUARE_ENVIRONMENT=sandbox` in `wrangler.toml` and use sandbox credentials. For live payments, change `SQUARE_ENVIRONMENT` to `production`, deploy again, and set the production Square credentials as Worker secrets.
+
+In the Cloudflare dashboard, add these variables/secrets:
+
+```txt
+SQUARE_ENVIRONMENT=production
+SQUARE_APPLICATION_ID=...
+SQUARE_LOCATION_ID=...
+SQUARE_ACCESS_TOKEN=...
+SQUARE_VERSION=2026-07-15
+ALLOWED_ORIGINS=https://www.tiruvi.co.uk,https://tiruvi.co.uk,http://localhost:8000
+```
+
+`SQUARE_ACCESS_TOKEN` must be a secret. The other values can also be stored as secrets for simplicity.
+
 ## SMTP
 
 Any SMTP provider that supports username/password over TLS can be used, including free-tier providers. Set:

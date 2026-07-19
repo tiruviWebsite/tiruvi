@@ -1,4 +1,7 @@
 const CHECKOUT_STORAGE_KEY = "tiruviCheckout";
+const CHECKOUT_API_BASE = ["localhost", "127.0.0.1"].includes(window.location.hostname)
+  ? ""
+  : "https://tiruvi-checkout.satwikgattu.workers.dev";
 
 let checkoutPayload = null;
 let squareCard = null;
@@ -175,7 +178,7 @@ async function submitCheckout(event) {
       throw new Error(tokenResult.errors?.[0]?.message || "Card payment could not be tokenized.");
     }
 
-    const response = await fetch("/api/create-order", {
+    const response = await fetch(`${CHECKOUT_API_BASE}/api/create-order`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -213,7 +216,7 @@ async function initCheckout() {
   document.querySelector("#checkout-form").addEventListener("submit", submitCheckout);
 
   try {
-    const response = await fetch("/api/checkout-config");
+    const response = await fetch(`${CHECKOUT_API_BASE}/api/checkout-config`);
     const config = await readJsonResponse(response, "Checkout service is not running here. Open the site through python3 main.py, not the static localhost:4173 server, to enable Square checkout.");
     await initializeSquare(config.square);
   } catch (error) {
