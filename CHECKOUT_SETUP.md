@@ -23,6 +23,8 @@ Use `SQUARE_ENVIRONMENT=production` with production credentials when going live.
 
 If local Python cannot verify Square's HTTPS certificate, install/update the CA bundle with `python3 -m pip install --upgrade certifi`. The server uses `certifi` automatically when it is available.
 
+If Square returns `CARD_DECLINED_VERIFICATION_REQUIRED`, the card requires buyer verification/SCA. The checkout passes billing details into Square card tokenization so Square can trigger verification when required.
+
 ## Cloudflare Worker Deployment
 
 The deployed GitHub Pages site calls:

@@ -27,6 +27,13 @@ function moneyToMinorUnits(value) {
   return Math.round(Number(value) * 100);
 }
 
+function squareCountryCode(country) {
+  if (country === "United Kingdom") {
+    return "GB";
+  }
+  return "GB";
+}
+
 function calculateOrder(items, shippingKey) {
   const normalizedItems = [];
   let subtotal = 0;
@@ -155,6 +162,19 @@ async function createSquarePayment(env, sourceId, order) {
       location_id: config.locationId,
       autocomplete: true,
       note: `Tiruvi order ${order.id}`,
+      buyer_email_address: order.contact.email || "",
+      buyer_phone_number: order.contact.phone || "",
+      customer_details: {
+        customer_initiated: true,
+        seller_keyed_in: false,
+      },
+      shipping_address: {
+        address_line_1: order.deliveryAddress.line1 || "",
+        address_line_2: order.deliveryAddress.line2 || "",
+        locality: order.deliveryAddress.city || "",
+        postal_code: order.deliveryAddress.postcode || "",
+        country: squareCountryCode(order.deliveryAddress.country),
+      },
     }),
   });
 

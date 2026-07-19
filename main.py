@@ -73,6 +73,12 @@ def money_to_minor_units(value):
     return int(round(float(value) * 100))
 
 
+def square_country_code(country):
+    if country == "United Kingdom":
+        return "GB"
+    return "GB"
+
+
 def calculate_order(items, shipping_key):
     products, shipping_options = active_products_and_shipping()
     normalized_items = []
@@ -154,6 +160,19 @@ def create_square_payment(source_id, order):
         "location_id": config["locationId"],
         "autocomplete": True,
         "note": f"Tiruvi order {order['id']}",
+        "buyer_email_address": order["contact"].get("email", ""),
+        "buyer_phone_number": order["contact"].get("phone", ""),
+        "customer_details": {
+            "customer_initiated": True,
+            "seller_keyed_in": False,
+        },
+        "shipping_address": {
+            "address_line_1": order["deliveryAddress"].get("line1", ""),
+            "address_line_2": order["deliveryAddress"].get("line2", ""),
+            "locality": order["deliveryAddress"].get("city", ""),
+            "postal_code": order["deliveryAddress"].get("postcode", ""),
+            "country": square_country_code(order["deliveryAddress"].get("country", "")),
+        },
     }
     req = request.Request(
         endpoint,

@@ -156,6 +156,41 @@ function collectFormData(form) {
   };
 }
 
+function countryCodeForSquare(country) {
+  if (country === "United Kingdom") {
+    return "GB";
+  }
+  return "GB";
+}
+
+function splitName(name) {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  return {
+    givenName: parts[0] || "",
+    familyName: parts.slice(1).join(" ") || parts[0] || "",
+  };
+}
+
+function buildVerificationDetails(customerDetails) {
+  const { givenName, familyName } = splitName(customerDetails.contact.name);
+  const address = customerDetails.deliveryAddress;
+  return {
+    amount: checkoutPayload.total.toFixed(2),
+    currencyCode: "GBP",
+    intent: "CHARGE",
+    billingContact: {
+      givenName,
+      familyName,
+      email: customerDetails.contact.email,
+      phone: customerDetails.contact.phone,
+      addressLines: [address.line1, address.line2].filter(Boolean),
+      city: address.city,
+      postalCode: address.postcode,
+      countryCode: countryCodeForSquare(address.country),
+    },
+  };
+}
+
 async function submitCheckout(event) {
   event.preventDefault();
   const form = event.currentTarget;
@@ -173,7 +208,7 @@ async function submitCheckout(event) {
   setStatus("Processing payment...");
   try {
     const customerDetails = collectFormData(form);
-    const tokenResult = await squareCard.tokenize();
+    const tokenResult = await squareCard.tokenize(buildVerificationDetails(customerDetails));
     if (tokenResult.status !== "OK") {
       throw new Error(tokenResult.errors?.[0]?.message || "Card payment could not be tokenized.");
     }
